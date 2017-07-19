@@ -1,0 +1,39 @@
+<html>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#submitButton').on('click', function () {
+                alert('clicked');
+                $.ajax({
+                    type: 'POST',
+                    url: 'https://w8q33aywq4.execute-api.us-east-1.amazonaws.com/prod/starterFunction',
+                    data: JSON.stringify({
+                        "email": $('#email').val(),
+                        "password": $("#password").val(),
+                        "user_key": $("#user_key").val()
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        alert(data);
+                    },
+                    error: function (err) {
+                        alert("err")
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+
+    <form>
+        E-mail: <input id="email" type="text" name="email"><br>
+        Password: <input id="password" type="password" name="password"><br>
+        API User Key: <input id="user_key" type="text" name="user_key"><br>
+        <button id="submitButton" type="submit">Submit</button>
+    </form>
+
+</body>
+
+</html>
